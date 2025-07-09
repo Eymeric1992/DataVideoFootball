@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Match Tracker - Outil Data</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="../index.html">Accueil</a></li>
+      <li><a href="data.html">Outil Data</a></li>
+      <li><a href="video.html">Analyse Vidéo</a></li>
+      <li><a href="./CV.html">CV</a></li>
+
+    </ul>
+  </nav>
+  <div class="container">
+    <h1>Outil de Suivi de Match - Portfolio Analyste Data & Vidéo</h1>
+    <div class="section chrono">
+      Chrono : <span id="chrono">00:00</span>
+      <div>
+        <button onclick="startChrono()">Démarrer</button>
+        <button onclick="pauseChrono()">Pause</button>
+        <button onclick="resetChrono()">Reset Chrono</button>
+        <button onclick="resetStats()">Reset Stats</button>
+        <button onclick="clearAllData()">Effacer Tout</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Saisie des joueurs</h2>
+      <div class="team-input">
+        <input type="text" id="team1Name" placeholder="Ex: Équipe 1">
+        <input type="text" id="player1Name" placeholder="Ex: Antoine">
+        <input type="number" id="player1Number" placeholder="N° maillot">
+        <select id="player1Position">
+          <option value="Gardien">Gardien</option>
+          <option value="DC">Défenseur Central</option>
+          <option value="DG">Défenseur Gauche</option>
+          <option value="DD">Défenseur Droit</option>
+          <option value="MDC">Milieu Défensif</option>
+          <option value="MOG">Milieu Offensif Gauche</option>
+          <option value="MOC">Milieu Offensif Central</option>
+          <option value="MOD">Milieu Offensif Droit</option>
+          <option value="BU">Buteur</option>
+          <option value="Remplaçant">Remplaçant</option>
+        </select>
+        <button onclick="addPlayer('team1')">Ajouter</button>
+      </div>
+      <div class="team-input">
+        <input type="text" id="team2Name" placeholder="Ex: Équipe 2">
+        <input type="text" id="player2Name" placeholder="Ex: Quentin">
+        <input type="number" id="player2Number" placeholder="N° maillot">
+        <select id="player2Position">
+          <option value="Gardien">Gardien</option>
+          <option value="DC">Défenseur Central</option>
+          <option value="DG">Défenseur Gauche</option>
+          <option value="DD">Défenseur Droit</option>
+          <option value="MDC">Milieu Défensif</option>
+          <option value="MOG">Milieu Offensif Gauche</option>
+          <option value="MOC">Milieu Offensif Central</option>
+          <option value="MOD">Milieu Offensif Droit</option>
+          <option value="BU">Buteur</option>
+          <option value="Remplaçant">Remplaçant</option>
+        </select>
+        <button onclick="addPlayer('team2')">Ajouter</button>
+      </div>
+      <div id="addMessage" style="text-align: center; color: #28a745;"></div>
+    </div>
+
+    <div class="section">
+      <h2>Équipe sauvegardée</h2>
+      <button onclick="showPlayerPool()">Gérer les joueurs sauvegardés</button>
+      <div id="playerPool" class="hidden">
+        <input type="text" id="savedPlayerName" placeholder="Nom du joueur">
+        <input type="number" id="savedPlayerNumber" placeholder="N° maillot">
+        <select id="savedPlayerPosition">
+          <option value="Gardien">Gardien</option>
+          <option value="DC">Défenseur Central</option>
+          <option value="DG">Défenseur Gauche</option>
+          <option value="DD">Défenseur Droit</option>
+          <option value="MDC">Milieu Défensif</option>
+          <option value="MOG">Milieu Offensif Gauche</option>
+          <option value="MOC">Milieu Offensif Central</option>
+          <option value="MOD">Milieu Offensif Droit</option>
+          <option value="BU">Buteur</option>
+          <option value="Remplaçant">Remplaçant</option>
+        </select>
+        <button onclick="savePlayerPool()">Enregistrer</button>
+        <ul id="playerPoolList"></ul>
+        <button onclick="addSelectedToTeam('team1')">Ajouter à Équipe 1</button>
+        <button onclick="addSelectedToTeam('team2')">Ajouter à Équipe 2</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Équipe 1: <span id="team1Label">Équipe 1</span></h2>
+      <table class="players-table team1" id="team1Players"></table>
+      <button onclick="clearTeam('team1')" class="clear-team-btn">Effacer l'équipe</button>
+      <h2>Équipe 2: <span id="team2Label">Équipe 2</span></h2>
+      <table class="players-table team2" id="team2Players"></table>
+      <button onclick="clearTeam('team2')" class="clear-team-btn">Effacer l'équipe</button>
+    </div>
+
+    <div class="section">
+      <h3>Résumé du match</h3>
+      <label><input type="checkbox" id="showPercentage" onchange="updateSummary()"> Afficher en pourcentage</label>
+      <table class="summary-table" id="summaryTable">
+        <thead>
+          <tr>
+            <th>Équipe</th>
+            <th>Joueur</th>
+            <th>N°</th>
+            <th>Poste</th>
+            <th>Passe</th>
+            <th>Duel offensif</th>
+            <th>Duel defensif</th>
+            <th>Récupération</th>
+            <th>Perte</th>
+            <th>Tir</th>
+            <th>But</th>
+            <th>Passe D</th>
+          </tr>
+        </thead>
+        <tbody id="summaryBody"></tbody>
+      </table>
+      <div class="export-buttons">
+        <button onclick="exportJSON()">📥 Exporter JSON</button>
+        <button onclick="exportSummaryCSV()">📥 Exporter Résumé CSV</button>
+      </div>
+      <div class="chart-section">
+        <button onclick="showTeamChart()">Voir Graphique Équipe</button>
+        <div id="teamChartContainer" style="display: none;">
+          <canvas id="teamChart" style="max-width: 100%; height: 200px;"></canvas>
+        </div>
+        <button onclick="showPlayerCharts()">Voir Graphiques Joueurs</button>
+        <div id="playerChartsContainer" style="display: none;"></div>
+      </div>
+    </div>
+
+    <div class="section log-section">
+      <div class="log-toggle">
+        <button onclick="toggleLog()">Afficher/Masquer les logs</button>
+      </div>
+      <h3>Actions enregistrées</h3>
+      <ul id="log" class="hidden"></ul>
+    </div>
+
+    <div class="section" id="videoSection" style="display: none;">
+      <h2>Analyse Vidéo</h2>
+      <input type="text" id="videoUrl" placeholder="URL de la vidéo">
+      <button onclick="loadVideo()">Charger Vidéo</button>
+      <div id="videoPlayer"></div>
+    </div>
+  </div>
+  <script src="../js/common.js"></script>
+  <script src="../js/script-data.js"></script>
+</body>
+</html>

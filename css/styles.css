@@ -1,0 +1,308 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 1rem;
+  background-color: #f0f2f5;
+  margin: 0;
+}
+
+p {
+  text-align: center;
+  font-style: oblique;
+  font-family: Arial, sans-serif;
+  color: #444;
+}
+
+nav {
+  background-color: #333;
+  padding: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+nav ul li a:hover {
+  color: #007bff;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  color: #333;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.section {
+  background: white;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.chrono {
+  text-align: center;
+  font-size: 1.8rem;
+  margin: 0.5rem 0;
+}
+
+.chrono button {
+  margin: 0.3rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+}
+
+.chrono button:hover {
+  background-color: #0056b3;
+}
+
+.team-input {
+  display: grid;
+  grid-template-columns: 1fr 1fr 80px 120px auto;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.team-input input, .team-input select, .team-input button {
+  padding: 0.6rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.team-input button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.team-input button:hover {
+  background-color: #218838;
+}
+
+.players-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0;
+  max-height: 400px;
+  overflow-y: auto;
+  display: table;
+}
+
+.players-table thead {
+  position: sticky;
+  top: 0;
+  background: #007bff;
+  color: white;
+  z-index: 1;
+}
+
+.players-table th, .players-table td {
+  padding: 0.5rem;
+  text-align: center;
+  border: 1px solid #ccc;
+  min-width: 80px;
+}
+
+.players-table th:first-child, .players-table td:first-child {
+  text-align: left;
+  min-width: 150px;
+}
+
+.team1 .players-table tr { background: #e6f3ff; }
+.team2 .players-table tr { background: #ffe6e6; }
+
+.action-btn {
+  padding: 0.2rem 0.3rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin: 0 2px;
+  line-height: 1;
+  width: 25px;
+  display: inline-block;
+}
+
+.success { background-color: #28a745; color: white; }
+.fail { background-color: #dc3545; color: white; }
+
+.action-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.clear-team-btn {
+  margin-top: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.clear-team-btn:hover {
+  background-color: #c82333;
+}
+
+.log-section {
+  margin-top: 0.5rem;
+}
+
+.log-toggle {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.log-toggle button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.log-toggle button:hover {
+  background-color: #0056b3;
+}
+
+.log ul {
+  list-style: none;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+}
+
+.log ul.visible {
+  display: block;
+}
+
+.log li {
+  padding: 0.3rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.summary-table th, .summary-table td {
+  border: 1px solid #ccc;
+  padding: 0.4rem;
+  text-align: center;
+}
+
+.summary-table th {
+  background-color: #007bff;
+  color: white;
+}
+
+.export-buttons {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.export-buttons button {
+  margin: 0 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.export-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.hidden {
+  display: none;
+}
+
+#playerPool {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+#playerPoolList {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+#playerPoolList li {
+  padding: 0.3rem;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#playerPoolList button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+}
+
+#playerPoolList button:hover {
+  background-color: #c82333;
+}
+
+#videoPlayer {
+  max-width: 100%;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .team-input { grid-template-columns: 1fr; }
+  .players-table th, .players-table td { font-size: 0.8rem; padding: 0.3rem; }
+  .action-btn { width: 20px; font-size: 0.7rem; }
+  nav ul { flex-direction: column; align-items: center; gap: 1rem; }
+  #playerPoolList li { flex-direction: column; text-align: center; }
+  #playerPoolList button { margin-top: 0.3rem; }
+}
+
+video {
+  display: block;
+  margin: 0 auto;
+max-width: 800px;}
+
+iframe {
+  display: block;
+  margin: 1rem auto;
+}
