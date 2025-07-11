@@ -381,6 +381,7 @@ function updateTeamChart() {
   });
 }
 
+// FONCTION MODIFIÉE POUR AFFICHER LE NOM DU JOUEUR AVANT LE GRAPHIQUE
 function updatePlayerCharts() {
   const container = document.getElementById('playerChartsContainer');
   container.innerHTML = '';
@@ -399,11 +400,18 @@ function updatePlayerCharts() {
 
       const div = document.createElement('div');
       div.style.margin = '20px 0';
+
+      // Ajout du nom du joueur au-dessus du graphique
+      const playerTitle = document.createElement('h3');
+      playerTitle.textContent = `${player.name} (#${player.number}, ${player.position})`;
+      div.appendChild(playerTitle);
+
       const canvas = document.createElement('canvas');
       canvas.id = `chart_${player.name}_${player.number}`;
       canvas.style.maxWidth = '100%';
       canvas.style.height = '150px';
       div.appendChild(canvas);
+
       container.appendChild(div);
 
       const labels = Object.keys(stats);
